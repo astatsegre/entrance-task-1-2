@@ -4,7 +4,7 @@ export function mapServerData(serverData) {
     features: serverData.map((obj, index) => ({
       id: index,
       type: "Feature",
-      //isActive: obj.isActive,
+      isActive: obj.isActive,
       geometry: 
       {
         type: "Point",
