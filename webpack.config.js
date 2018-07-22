@@ -14,5 +14,4 @@ module.exports = {
     port: 9000,
     before: initBackendStub
   },
-  devtool: 'source-map'
 };

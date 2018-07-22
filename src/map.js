@@ -11,16 +11,12 @@ export default function initMap(ymaps, containerId) {
 
   const objectManager = new ymaps.ObjectManager({
     clusterize: true,
-    gridSize: 64,
     clusterIconLayout: 'default#pieChart',
-    clusterDisableClickZoom: false,
-    geoObjectOpenBalloonOnClick: false,
     geoObjectHideIconOnBalloonOpen: false,
     geoObjectBalloonContentLayout: getDetailsContentLayout(ymaps)
   });
 
-  objectManager.clusters.options.set('preset', 'islands#greenClusterIcons');
-  myMap.geoObjects.add(objectManager)
+  myMap.geoObjects.add(objectManager);
 
   loadList().then(data => {
     objectManager.add(data);
@@ -45,10 +41,8 @@ export default function initMap(ymaps, containerId) {
   const listBoxControl = createFilterControl(ymaps);
   myMap.controls.add(listBoxControl);
 
-  var filterMonitor = new ymaps.Monitor(listBoxControl.state);
+  const filterMonitor = new ymaps.Monitor(listBoxControl.state);
   filterMonitor.add('filters', filters => {
-    objectManager.setFilter(
-      obj => filters[obj.isActive ? 'active' : 'defective']
-    );
+    objectManager.setFilter(obj => filters[obj.isActive ? 'active' : 'defective']);
   });
 }

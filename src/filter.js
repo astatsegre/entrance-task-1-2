@@ -2,8 +2,7 @@ export function createFilterControl(ymaps) {
   const items = [
     { title: 'Active', value: 'active' },
     { title: 'Defective', value: 'defective' }
-  ].map(
-    obj =>
+  ].map(obj =>
       new ymaps.control.ListBoxItem({
         data: { content: obj.title, value: obj.value },
         state: { selected: true }
@@ -22,8 +21,8 @@ export function createFilterControl(ymaps) {
   });
 
   listBoxControl.events.add(['select', 'deselect'], event => {
-    var item = event.get('target');
-    var filters = ymaps.util.extend({}, listBoxControl.state.get('filters'));
+    const item = event.get('target');
+    const filters = ymaps.util.extend({}, listBoxControl.state.get('filters'));
     filters[item.data.get('value')] = item.isSelected();
     listBoxControl.state.set('filters', filters);
   });
